@@ -1,0 +1,201 @@
+@font-face {
+    font-family: 'fontz';
+    src: url('asset/fonts/Cilok\ There.otf') format('opentype');
+}
+
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Spartan;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.title {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: bold;
+    color: #133d6d;
+    text-align: center;
+    z-index: 1000; 
+    font-family: fontz;
+}
+
+.bg_1 {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 60%;
+    color: rgb(241, 249, 253);
+    pointer-events: none;
+}
+
+.center-container {
+    position: absolute;
+    top: 17.5%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    justify-content: space-between; 
+    width: 52%;
+    z-index: 300;
+}
+
+.button-extra-wide {
+    width: 200px !important; 
+}
+
+.button-square {
+    font-family: fontz;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 2px solid transparent;
+    outline-style: solid;
+    outline-color: azure;
+    background-color: transparent;
+    color: #458fe4;
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative; 
+    z-index: 400;
+}
+
+.button-square:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px 5px rgba(156, 219, 255, 0.8);
+}
+
+.button-square::after {
+    content: attr(data-hover-text); 
+    position: absolute;
+    bottom: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(145, 199, 206, 0.8); 
+    color: #fff; 
+    padding: 5px 10px; 
+    border-radius: 5px;
+    font-size: 15px; 
+    white-space: nowrap; 
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    z-index: 500; 
+}
+
+.button-square:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px); 
+}
+
+.button-square:active {
+    transform: translateY(0);
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #90EE90;
+}   
+
+/*
+.button-square:focus {
+    outline: none;
+}
+*/
+
+.text-identifier {
+    position: relative;
+    top: 190px; 
+    display: flex;
+    justify-content: space-between;
+    width: 35.5%; 
+    margin: 0 auto; 
+    font-size: 20px;
+    color: #919191;
+}
+
+.text-identifier p {
+    font-family: fontz;
+    margin: 0;
+}
+
+/*
+.square {
+    display: inline-block;
+    margin-top: 14.5%;
+    left: 20%;
+    width: 60%;
+    height: 510px;
+    border: 2px solid transparent;
+    outline-style: solid;
+    outline-color: azure;
+    background-color: #D4E3FF;
+    color: #458fe4;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50px;
+    position: relative; 
+    z-index: 400;
+}
+*/
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(40, 20px); 
+    grid-template-rows: repeat(25, 20px); 
+    gap: 1px;   
+    background-color: #D4E3FF; 
+    margin-top: 14.5%;
+    padding: 20px;
+    left: 20%;
+    width: 60%;
+    outline-style: solid;
+    outline-color: azure;
+    border-radius: 50px;
+    position: relative; 
+    z-index: 400;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: azure; 
+}
+
+.cell.start {
+    background-color: #00ff00; /* Start node (green) */
+  }
+
+.cell.end {
+    background-color: #ff0000; /* End node (red) */
+}
+
+.cell.wall {
+    background-color: #000000; /* Wall node (black) */
+}
+
+.cell.path {
+    background-color: #ff9900; /* Path nodes (orange/red) */
+}
+
+.cell.visited {
+    background-color: #b3e5fc; /* Visited nodes (light blue) */
+}
