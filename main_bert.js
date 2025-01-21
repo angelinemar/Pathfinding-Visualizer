@@ -2,13 +2,14 @@ import { dfs } from './dfs.js';
 import { dijkstra } from './dijkstra.js';
 import { aStar } from './a-star.js';
 
-const rows = 25; 
-const cols = 40;
+export const rows = 25; 
+export const cols = 40;
 const gridContainer = document.getElementById('grid');
 export let map = Array(rows).fill().map(() => Array(cols).fill(1));
-let path = [];
 let isMouseDown = false;
 let isRightClick = false; 
+let running = false;
+let path = [];
 
 export let startRow = 1;
 export let startCol = 1;
@@ -26,7 +27,7 @@ gridContainer.addEventListener('mousedown', (e) => {
   isRightClick = e.button === 2; 
 
   const cell = e.target;
-  if (cell.classList.contains('cell')) {
+  if (cell.classList.contains('cell') && !running) {
     const row = parseInt(cell.dataset.row, 10);
     const col = parseInt(cell.dataset.col, 10);
 
@@ -74,7 +75,7 @@ for (let row = 0; row < rows; row++) {
     gridContainer.appendChild(cell);
 
     cell.addEventListener('mouseover', () => {
-      if (isMouseDown) {
+      if (isMouseDown && !running) {
         if (cell.classList.contains('start') || cell.classList.contains('end')) {
           return; // Prevent modifying the starting cell
         }
@@ -111,10 +112,23 @@ aStarBttn.addEventListener("click", () => {
 });
 
 startBttn.addEventListener("click", () => {
-  console.log("Algorithm is starting...");
+  if(!running) {
+    console.log("Algorithm is starting...");
 
-  // Call the function to run the algorithm
-  runAlgorithm();
+    // Call the function to run the algorithm
+    document.getElementById("programStart").innerHTML = "Clear";
+    running = true;
+    runAlgorithm();
+  } else {
+    path.forEach(([row, col]) => {
+      const cell = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
+      if (cell && !cell.classList.contains('start') && !cell.classList.contains('end')) {
+        cell.classList.remove('path'); // Add 'path' class for visualization
+      }
+    });
+    document.getElementById("programStart").innerHTML = "Start";
+    running = false;
+  }
 });
 
 function runAlgorithm() {
@@ -122,10 +136,23 @@ function runAlgorithm() {
   console.log(algorithm);
 
   if (algorithm === 'DFS') {
-    dfs();
+    path = dfs();
+    visualize() 
   } else if (algorithm === 'Dijkstra') {
-    dijkstra();
+    path = dijkstra();
+    visualize();
   } else if (algorithm === 'A-Star') {
-    aStar();
+    path = aStar();
+    visualize();
   }
+}
+
+function visualize() {
+  console.log(path);
+  path.forEach(([row, col]) => {
+    const cell = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
+    if (cell && !cell.classList.contains('start') && !cell.classList.contains('end')) {
+      cell.classList.add('path'); // Add 'path' class for visualization
+    }
+  });
 }

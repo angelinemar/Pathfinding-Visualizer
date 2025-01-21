@@ -1,0 +1,5 @@
+export cant work because no 'type=module' in <script type="module" src="main_page.js" defer></script> in HTML file
+
+Day 1 Saturday: Added grid and placing down and removing walls
+Day 2 Tuesday: Added start and end points, basic button functions, basic DFS implementation, path visualizer, and edit mode (not able to place walls when program is running)
+Day 3 Wednesday: 
