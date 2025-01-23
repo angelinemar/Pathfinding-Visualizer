@@ -3,7 +3,7 @@ import { map, startRow, startCol, endRow, endCol, rows, cols } from './main_bert
 export function dfs() {
     /*console.log(startRow);*/
     let visited = Array(rows).fill().map(() => Array(cols).fill(false));
-    let path = []
+    let path = [];
     return dfsrecursive(startRow, startCol, visited, path);  
 }
 
