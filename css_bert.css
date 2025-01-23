@@ -199,3 +199,25 @@ body {
 .cell.visited {
     background-color: #b3e5fc; /* Visited nodes (light blue) */
 }
+
+.square-green-active {
+    width: 15px; /* Width of the square */
+    height: 15px; /* Height of the square */
+    background-color: #00ff00; /* Background color of the square */
+    position: absolute;
+    left: 24%;
+    top: 5%
+}
+
+.square-red-active {
+    width: 15px; /* Width of the square */
+    height: 15px; /* Height of the square */
+    background-color: #ff0000; /* Background color of the square */
+    position: absolute;
+    left: 25.5%;
+    top: 5%
+}
+
+.deactivate {
+    opacity: 20%;
+}
