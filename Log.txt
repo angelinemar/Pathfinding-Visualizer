@@ -5,3 +5,9 @@ Day 1 Saturday: Added grid and placing down and removing walls
 Day 2 Tuesday: Added start and end points, basic button functions, basic DFS implementation, path visualizer, and edit mode (not able to place walls when program is running)
 Day 3 Wednesday: Added ability to move start and end points + UI
 Day 4 Thursday: Added Dijkstra algorithm, fixed problem where map would get modified when Dijkstra was used.
+Day 5 Friday: Found bug where new start cell points path to old start cell if end cell is blocked (FIXED) {reason: default value of backtrack 2d array set to [1,1] or pawn point for start cell}
+Day 6 Monday: Added A* Star, Added more UI (Select buttons)
+
+
+- Clear button
+- Selected UI
