@@ -13,6 +13,7 @@ let isLeftClick = false;
 let editStart = false;
 let editEnd = false;
 let running = false;
+let selected = false;
 let path = [];
 
 export let startRow = 1;
@@ -22,7 +23,7 @@ export let endCol = 38;
 map[startRow][startCol] = 'S';
 map[endRow][endCol] = 'E';
 
-let algorithm = 'DFS';
+let algorithm = 'NON';
 
 gridContainer.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -157,7 +158,7 @@ for (let row = 0; row < rows; row++) {
           // Remove wall
           cell.classList.remove('wall');
           map[row][col] = 1; 
-        } else {
+        } else if (isLeftClick) {
           // Add wall
           cell.classList.add('wall');
           map[row][col] = 0; 
@@ -167,8 +168,6 @@ for (let row = 0; row < rows; row++) {
   }
 }
 
-
-
 const dfsBttn = document.getElementById('dfsMod');
 const dijkstraBttn = document.getElementById('dijkstraMod');
 const aStarBttn = document.getElementById('aStarMod');
@@ -176,18 +175,49 @@ const startBttn = document.getElementById('programStart');
 
 dfsBttn.addEventListener("click", () => {
   algorithm = "DFS";
+  if (!dfsBttn.classList.contains("selected")) {
+    let prevSelected = document.querySelector('.selected');
+    if (prevSelected) {
+      prevSelected.classList.remove('selected'); // Remove the 'selected' class from the previously selected button
+      console.log("Removed");
+    }
+    dfsBttn.classList.add('selected');
+  } else {
+    dfsBttn.classList.remove('selected');
+    algorithm = "NON"
+  }
 });
 
 dijkstraBttn.addEventListener("click", () => {
   algorithm = "Dijkstra";
+  if (!dijkstraBttn.classList.contains("selected")) {
+    let prevSelected = document.querySelector('.selected');
+    if (prevSelected) {
+      prevSelected.classList.remove('selected'); // Remove the 'selected' class from the previously selected button
+    }
+    dijkstraBttn.classList.add('selected');
+  } else {
+    dijkstraBttn.classList.remove('selected');
+    algorithm = "NON"
+  }
 });
 
 aStarBttn.addEventListener("click", () => {
   algorithm = "A-Star";
+  if (!aStarBttn.classList.contains("selected")) {
+    let prevSelected = document.querySelector('.selected');
+    if (prevSelected) {
+      prevSelected.classList.remove('selected'); // Remove the 'selected' class from the previously selected button
+    }
+    aStarBttn.classList.add('selected');
+  } else {
+    aStarBttn.classList.remove('selected');
+    algorithm = "NON"
+  }
 });
 
 startBttn.addEventListener("click", () => {
-  if(!running && !editStart && !editEnd) {
+  if(!running && !editStart && !editEnd && algorithm != "NON") {
     console.log("Algorithm is starting...");
 
     // Call the function to run the algorithm
@@ -207,6 +237,11 @@ startBttn.addEventListener("click", () => {
     running = false;
     path = [];
   }
+  if (!startBttn.classList.contains("selected") && algorithm != "NON") {
+    startBttn.classList.add('selected');
+  } else {
+    startBttn.classList.remove('selected');
+  }
 });
 
 function runAlgorithm() {
@@ -214,17 +249,17 @@ function runAlgorithm() {
   //console.log(algorithm);
 
   if (algorithm === 'DFS') {
-    console.log("DFS2");
+    //console.log("DFS2");
     path = dfs();
     visualize() 
   } else if (algorithm === 'Dijkstra') {
-    console.log("Dijkstra");
+    //console.log("Dijkstra");
     path = dijkstra();
     visualize();
   } else if (algorithm === 'A-Star') {
     path = aStar();
     visualize();
-  }
+  } 
 }
 
 function visualize() {
@@ -237,7 +272,6 @@ function visualize() {
       }
     });
   }
-  console.log(map);
+  //console.log(map);
 };
 
-export let localMap = map;

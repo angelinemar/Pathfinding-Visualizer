@@ -15,7 +15,7 @@ export function dijkstra() {
     localMap[startRow][startCol] = 0;
     localMap[endRow][endCol] = 1;
 
-    let backtrack = Array(rows).fill().map(() => Array(cols).fill([1, 1]));
+    let backtrack = Array(rows).fill().map(() => Array(cols).fill(null));
     let visited = Array(rows).fill().map(() => Array(cols).fill(false));
     let dist = Array(rows).fill().map(() => Array(cols).fill(999));
     let q = [];
@@ -70,10 +70,17 @@ export function dijkstra() {
     let reverse = [endRow, endCol];
 
     while (reverse != 0) {
-        path.push(reverse);
-        reverse = backtrack[reverse[0]][reverse[1]];
-        //console.log(backtrack);
+        if (backtrack[reverse[0]][reverse[1]] === null) {
+            return null;
+        } else {
+            path.push(reverse);
+            reverse = backtrack[reverse[0]][reverse[1]];
+            //console.log(backtrack);
+        }
     }
+    // console.log(localMap);
+    // console.log(backtrack);
+    // console.log(dist);
 
     return path;
 }

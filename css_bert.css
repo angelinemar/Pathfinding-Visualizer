@@ -114,6 +114,13 @@ body {
     outline-color: #90EE90;
 }   
 
+.button-square.selected {
+    transform: translateY(-15px);
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #90EE90;
+}
+
 /*
 .button-square:focus {
     outline: none;
@@ -193,7 +200,8 @@ body {
 }
 
 .cell.path {
-    background-color: #ff9900; /* Path nodes (orange/red) */
+    background-color: #6020b6; /* Path nodes (purple) */
+    opacity: 90%;
 }
 
 .cell.visited {
