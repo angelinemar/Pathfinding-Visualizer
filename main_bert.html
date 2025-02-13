@@ -4,38 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css_angel.css">
     <link rel="stylesheet" href="css_bert.css">
     <script type="module" src="main_bert.js" defer></script>
+    <script src="js/animation.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Path Finding Visualizer</title>
 </head>
 <body>
     <header id="header">
-        <img src="asset/Ellipse.png" class="bg_1">
-        <p class="title">Pathfinder Visualizer</p>
-        <div id = "sq-green" class="square-green-active"></div>
-        <div id = "sq-red" class="square-red-active"></div>
+        <p class="title">Pathfind</p>
+
+        <!-- Optional square elements -->
+        <div id="sq-green" class="square-green-active"></div>
+        <div id="sq-red" class="square-red-active"></div>
+
+        <!-- Algorithm and Speed control buttons section -->
         <div class="center-container">
-            <button id = "dfsMod" class="button-square" data-hover-text="DFS" type="button">D</button>
-            <button id = "dijkstraMod" class="button-square" data-hover-text="Dijkstra Algorithm" type="button">DJ</button>
-            <button id = "aStarMod" class="button-square" data-hover-text="A* Algorithm" type="button">A*</button>
-            <button id = "programStart" class="button-square button-extra-wide" data-hover-text="Start Simulation" type="button">Start</button>
+            <button id="dfsMod" class="button-square" data-hover-text="DFS Algorithm" type="button">DFS</button>
+            <button id="dijkstraMod" class="button-square" data-hover-text="Dijkstra Algorithm" type="button">DJ</button>
+            <button id="aStarMod" class="button-square" data-hover-text="A* Algorithm" type="button">A*</button>
+            <button id="programStart" class="button-square button-extra-wide" data-hover-text="Start Simulation" type="button">Start</button>
             <button class="button-square" data-hover-text="Slow Speed" type="button">S</button>
             <button class="button-square" data-hover-text="Medium Speed" type="button">M</button>
             <button class="button-square" data-hover-text="Fast Speed" type="button">F</button>
         </div>
 
+        <!-- Stars animation and sky background -->
+        <div class="sky">
+            <div class="stars"></div>
+            <div class="stars-cross"></div>
+            <div class="stars-cross-aux"></div>
+        </div>
+
+        <!-- Algorithm and Speed labels -->
         <div class="text-identifier">
+            <!--
             <p>Algorithm</p>
             <p>Speed</p>
+            -->
         </div>
 
+        <!-- Interactive grid for pathfinding -->
         <div class="grid" id="grid"></div>
-        
 
-
-
-        </div>
-
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          
     </header>
+
 </body>
 </html>

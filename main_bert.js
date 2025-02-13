@@ -262,6 +262,21 @@ function runAlgorithm() {
   } 
 }
 
+document.querySelectorAll('.cell').forEach(cell => {
+  cell.addEventListener('click', function () {
+      const row = parseInt(this.dataset.row);
+      const col = parseInt(this.dataset.col);
+
+      if (map[row][col] === 0) {
+          map[row][col] = 1; 
+          this.classList.remove('wall');
+      } else {
+          map[row][col] = 0; 
+          this.classList.add('wall');
+      }
+  });
+});
+
 function visualize() {
   console.log(path);
   if (path != null) {
